@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0c1a1c;
+  --color-ink-soft: #163033;
+  --color-teal: #0d8a86;
+  --color-teal-bright: #1aada6;
+  --color-sand: #f3ede3;
+  --color-paper: #faf7f2;
+  --color-wood: #6b4f3a;
+  --color-muted: #5a6b6d;
+  --color-line: #d8cfc0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-teal) 28%, white);
+  color: var(--color-ink);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+.rule {
+  height: 1px;
+  background: var(--color-line);
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}

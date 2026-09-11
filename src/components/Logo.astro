@@ -1,0 +1,35 @@
+---
+interface Props {
+  variant?: "dark" | "light";
+  href?: string;
+}
+
+const { variant = "dark", href = "/" } = Astro.props;
+const light = variant === "light";
+---
+
+<a
+  href={href}
+  class:list={[
+    "group inline-flex items-center gap-2.5 no-underline",
+    light ? "text-sand" : "text-ink",
+  ]}
+  aria-label="BGL3 Builds home"
+>
+  <span class="grid gap-[3px]" aria-hidden="true">
+    <span class:list={["h-[3px] w-6 rounded-[1px]", light ? "bg-teal-bright" : "bg-teal"]}></span>
+    <span class:list={["h-[3px] w-4 rounded-[1px]", light ? "bg-teal" : "bg-ink-soft"]}></span>
+    <span class:list={["h-[3px] w-[1.35rem] rounded-[1px]", light ? "bg-sand" : "bg-wood"]}></span>
+  </span>
+  <span class="leading-none">
+    <span class="display block text-[1.35rem] font-medium tracking-tight">BGL3</span>
+    <span
+      class:list={[
+        "block text-[0.62rem] font-semibold tracking-[0.28em] uppercase",
+        light ? "text-sand/70" : "text-muted",
+      ]}
+    >
+      Builds
+    </span>
+  </span>
+</a>

@@ -1,0 +1,124 @@
+---
+import { services, site } from "../data/site";
+---
+
+<form id="contact-form" class="grid gap-5" novalidate>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <label class="grid gap-2 text-sm font-medium">
+      Name
+      <input
+        name="name"
+        type="text"
+        required
+        autocomplete="name"
+        class="rounded-xl border border-line bg-white px-4 py-3 text-base font-normal outline-none ring-teal/30 transition focus:ring-2"
+      />
+    </label>
+    <label class="grid gap-2 text-sm font-medium">
+      Email
+      <input
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        class="rounded-xl border border-line bg-white px-4 py-3 text-base font-normal outline-none ring-teal/30 transition focus:ring-2"
+      />
+    </label>
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <label class="grid gap-2 text-sm font-medium">
+      Phone
+      <input
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        class="rounded-xl border border-line bg-white px-4 py-3 text-base font-normal outline-none ring-teal/30 transition focus:ring-2"
+      />
+    </label>
+    <label class="grid gap-2 text-sm font-medium">
+      Project type
+      <select
+        name="type"
+        class="rounded-xl border border-line bg-white px-4 py-3 text-base font-normal outline-none ring-teal/30 transition focus:ring-2"
+      >
+        <option value="">What are we talking about?</option>
+        {services.map((item) => <option value={item.title}>{item.title}</option>)}
+      </select>
+    </label>
+  </div>
+
+  <label class="grid gap-2 text-sm font-medium">
+    Tell us about the work
+    <textarea
+      name="message"
+      required
+      rows="6"
+      placeholder="Property, drawings, timeline, or the problem you need solved."
+      class="resize-y rounded-xl border border-line bg-white px-4 py-3 text-base font-normal outline-none ring-teal/30 transition focus:ring-2"
+    ></textarea>
+  </label>
+
+  <p id="form-error" class="hidden text-sm text-wood" role="alert"></p>
+
+  <button
+    type="submit"
+    class="inline-flex w-fit rounded-full bg-ink px-6 py-3 text-sm font-semibold text-sand transition hover:bg-ink-soft"
+  >
+    Send the note
+  </button>
+</form>
+
+<div id="form-success" class="hidden rounded-2xl border border-line bg-sand px-6 py-8">
+  <p class="text-[0.7rem] font-semibold tracking-[0.2em] text-teal uppercase">Message ready</p>
+  <h3 class="display mt-2 text-3xl">Thank you — we will take it from here.</h3>
+  <p class="mt-3 max-w-md text-sm leading-relaxed text-muted">
+    Your email app should open with the details. If it does not, write us at
+    <a class="font-semibold text-teal" href={`mailto:${site.email}`}>{site.email}</a>
+    and we will get back to you promptly.
+  </p>
+</div>
+
+<script define:vars={{ email: site.email }}>
+  const form = document.getElementById("contact-form");
+  const success = document.getElementById("form-success");
+  const error = document.getElementById("form-error");
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const name = String(data.get("name") ?? "").trim();
+      const from = String(data.get("email") ?? "").trim();
+      const phone = String(data.get("phone") ?? "").trim();
+      const type = String(data.get("type") ?? "").trim();
+      const message = String(data.get("message") ?? "").trim();
+
+      if (!name || !from || !message) {
+        if (error) {
+          error.textContent = "Name, email, and a short note about the work are required.";
+          error.classList.remove("hidden");
+        }
+        return;
+      }
+
+      const body = [
+        `Name: ${name}`,
+        `Email: ${from}`,
+        phone ? `Phone: ${phone}` : null,
+        type ? `Project: ${type}` : null,
+        "",
+        message,
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+        `Project inquiry from ${name}`,
+      )}&body=${encodeURIComponent(body)}`;
+      form.classList.add("hidden");
+      success?.classList.remove("hidden");
+    });
+  }
+</script>

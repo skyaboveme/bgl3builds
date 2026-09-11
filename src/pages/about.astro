@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import CtaBand from "../components/CtaBand.astro";
+import portrait from "../assets/owner-portrait.png";
+import jobsite from "../assets/owner-jobsite.png";
+---
+
+<Base title="About" description="BGL3 Builds: 45 years of commercial construction, custom homes, and finish work — with customer service that lasts after the job.">
+  <section class="bg-ink px-5 pt-32 pb-16 text-sand md:px-8 md:pt-40 md:pb-24">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-[0.7rem] font-semibold tracking-[0.22em] text-teal-bright uppercase">About</p>
+      <h1 class="display mt-4 max-w-4xl text-5xl leading-[1.08] md:text-6xl">
+        Forty-five years of reading the prints and treating people well.
+      </h1>
+    </div>
+  </section>
+
+  <section class="px-5 py-16 md:px-8 md:py-24">
+    <div class="mx-auto grid max-w-6xl items-start gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <Image
+          src={portrait}
+          alt="Owner of BGL3 Builds"
+          class="rounded-2xl object-cover"
+          widths={[400, 600, 900]}
+          sizes="(min-width: 768px) 40vw, 100vw"
+        />
+      </div>
+      <div class="md:col-span-7 md:pt-4">
+        <h2 class="display text-4xl leading-tight">Built by people who still care how the job feels.</h2>
+        <div class="mt-6 space-y-4 text-base leading-relaxed text-muted">
+          <p>
+            BGL3 Builds is a construction company with forty-five years of experience across commercial work and custom residential building. We follow blueprints. We show up. We finish the details that make a house look like someone paid attention.
+          </p>
+          <p>
+            The work spans new custom homes, remodels, add-ons, decks, fences, docks, door and window replacements, trim, custom cabinets, and the one-off builds that do not fit a tidy category. If you have drawings, we will read them. If you have a problem, we will walk it with you.
+          </p>
+          <p>
+            Great customer service is not a separate department here. It is answering questions before they become change orders, keeping the site respectful, and standing behind the work after the last coat of stain.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ink px-5 py-20 text-sand md:px-8 md:py-28">
+    <div class="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-12">
+      <div class="md:col-span-7 md:order-2">
+        <Image
+          src={jobsite}
+          alt="On the jobsite — hardhat, blueprints, and tools"
+          class="rounded-2xl object-cover"
+          widths={[600, 900, 1400]}
+          sizes="(min-width: 768px) 58vw, 100vw"
+        />
+      </div>
+      <div class="md:col-span-5 md:order-1">
+        <p class="text-[0.7rem] font-semibold tracking-[0.22em] text-teal-bright uppercase">On the tools</p>
+        <h2 class="display mt-3 text-4xl leading-tight">Still on the job. Still reading the prints.</h2>
+        <p class="mt-5 text-base leading-relaxed text-sand/78">
+          Forty-five years in and the boots still go on every morning. This is not a company that sends you a crew and disappears — the builder is on your site, reading the drawings, solving the problems in real time, and making sure the work is right before the sawdust settles.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-line bg-sand px-5 py-20 md:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="display text-4xl">What we bring to a job.</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <article class="rounded-2xl bg-paper p-7">
+          <h3 class="display text-2xl">Jobsite range</h3>
+          <p class="mt-3 text-sm leading-relaxed text-muted">
+            Commercial construction and custom homes sit next to fences, cabinets, and dock work. That range is how you learn to solve problems instead of repeating one product.
+          </p>
+        </article>
+        <article class="rounded-2xl bg-paper p-7">
+          <h3 class="display text-2xl">Blueprint discipline</h3>
+          <p class="mt-3 text-sm leading-relaxed text-muted">
+            Dimensions, notes, and details are there for a reason. We build what the drawings say — and we ask when something on site does not match the sheet.
+          </p>
+        </article>
+        <article class="rounded-2xl bg-paper p-7">
+          <h3 class="display text-2xl">Service after the sawdust</h3>
+          <p class="mt-3 text-sm leading-relaxed text-muted">
+            You should be able to call us. Clear communication, honest timelines, and a crew that treats your house like they may be invited to the cookout.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+

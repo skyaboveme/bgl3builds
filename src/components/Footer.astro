@@ -1,0 +1,67 @@
+---
+import Logo from "./Logo.astro";
+import { nav, services, site } from "../data/site";
+
+const year = new Date().getFullYear();
+const featured = services.slice(0, 6);
+---
+
+<footer class="bg-ink text-sand">
+  <div class="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-12 md:px-8 md:py-20">
+    <div class="md:col-span-5">
+      <Logo variant="light" />
+      <p class="display mt-6 max-w-sm text-3xl leading-tight text-sand/95">
+        {site.tagline}
+      </p>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-sand/60">
+        Custom homes, remodels, outdoor living, and finish carpentry — built from the drawings, with customer service that lasts after the last board is set.
+      </p>
+    </div>
+
+    <div class="md:col-span-3">
+      <p class="text-[0.7rem] font-semibold tracking-[0.2em] text-teal-bright uppercase">Visit</p>
+      <ul class="mt-4 space-y-2">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="text-sm text-sand/75 transition-colors hover:text-sand">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="md:col-span-4">
+      <p class="text-[0.7rem] font-semibold tracking-[0.2em] text-teal-bright uppercase">What we build</p>
+      <ul class="mt-4 columns-2 gap-x-6 space-y-2">
+        {
+          featured.map((item) => (
+            <li>
+              <a
+                href={`/services#${item.slug}`}
+                class="text-sm text-sand/75 transition-colors hover:text-sand"
+              >
+                {item.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href="/contact"
+        class="mt-8 inline-flex rounded-full bg-teal-bright px-5 py-2.5 text-sm font-semibold text-ink"
+      >
+        Talk through a project
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-5 text-xs text-sand/45 md:flex-row md:items-center md:justify-between md:px-8">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p>Residential · Commercial · Custom builds</p>
+    </div>
+  </div>
+</footer>

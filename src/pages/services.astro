@@ -1,0 +1,59 @@
+---
+import Base from "../layouts/Base.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { process, services } from "../data/site";
+---
+
+<Base title="Services" description="Custom homes, remodels, add-ons, decks, fences, docks, doors and windows, trim, cabinets, and commercial construction from BGL3 Builds.">
+  <section class="bg-ink px-5 pt-32 pb-16 text-sand md:px-8 md:pt-40 md:pb-20">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-[0.7rem] font-semibold tracking-[0.22em] text-teal-bright uppercase">Services</p>
+      <h1 class="display mt-4 max-w-3xl text-5xl leading-[1.08] md:text-6xl">
+        The work we take on — and finish.
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-sand/70">
+        Homes, remodels, outdoor living, and finish carpentry. If it is on the drawings or it is a problem on the property, we will tell you whether we are the right crew.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-5 py-16 md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-2">
+        {
+          services.map((item, index) => (
+            <article
+              id={item.slug}
+              class="scroll-mt-28 bg-paper px-6 py-8 md:px-8 md:py-10"
+            >
+              <p class="text-xs font-semibold tracking-[0.18em] text-teal">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+              <h2 class="display mt-3 text-3xl">{item.title}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-muted md:text-base">{item.long}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-sand px-5 py-20 md:px-8">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="display text-4xl">A simple way through a project.</h2>
+      <div class="mt-10 grid gap-8 md:grid-cols-4">
+        {
+          process.map((item) => (
+            <div class="border-t border-line pt-5">
+              <p class="text-xs font-semibold tracking-[0.18em] text-teal">{item.step}</p>
+              <h3 class="display mt-2 text-2xl">{item.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Not sure which service you need?" body="Describe the house, the drawings, or the problem. We will help you name the work and decide what comes first." />
+</Base>
